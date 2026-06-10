@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "上市公司募集资金公告基础信息字段",
+  "description": "从上市公司募集资金公告中提取的基础信息字段定义，用于后续大模型抽取和校验",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "description": "公司全称，必须与公告中完全一致",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "stock_code": {
+      "type": "string",
+      "description": "6位数字股票代码",
+      "pattern": "^[0-9]{6}$"
+    },
+    "announcement_date": {
+      "type": "string",
+      "description": "公告发布日期，格式为 YYYY-MM-DD",
+      "pattern": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+    },
+    "report_year": {
+      "type": "integer",
+      "description": "公告涉及的会计年度",
+      "minimum": 2000,
+      "maximum": 2030
+    },
+    "board_type": {
+      "type": "string",
+      "description": "上市板块",
+      "enum": ["主板", "创业板", "科创板", "北交所"]
+    },
+    "announcement_title": {
+      "type": "string",
+      "description": "公告标题",
+      "minLength": 1,
+      "maxLength": 500
+    }
+  },
+  "required": ["company_name", "stock_code", "announcement_date", "report_year", "board_type", "announcement_title"]
+}

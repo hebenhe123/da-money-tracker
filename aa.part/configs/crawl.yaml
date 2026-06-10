@@ -1,0 +1,32 @@
+project_name: "fundraising_funds_tracking"
+source: "cninfo"
+keywords:
+  - "募集资金年度存放与使用情况专项报告"
+  - "募集资金使用情况"
+  - "募集资金"
+markets:
+  - "sz"
+  - "sh"
+date_range:
+  start: "2024-01-01"
+  end: "2025-06-30"
+max_records: 100
+sleep_seconds: 1.5
+output:
+  metadata: "data/metadata/metadata.csv"
+  pdf_dir: "data/pdf"
+  failed_downloads: "outputs/logs/failed_downloads.log"
+  logs_dir: "outputs/logs"
+companies:
+  - stock_code: "300750"
+    stock_name: "宁德时代"
+  - stock_code: "601012"
+    stock_name: "隆基绿能"
+  - stock_code: "603259"
+    stock_name: "药明康德"
+  - stock_code: "300274"
+    stock_name: "阳光电源"
+  - stock_code: "300014"
+    stock_name: "亿纬锂能"
+  - stock_code: "300760"
+    stock_name: "迈瑞医疗"
