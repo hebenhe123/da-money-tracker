@@ -1,0 +1,77 @@
+# 章节规则配置文件
+
+section_types:
+  # 基本信息章节
+  basic_info:
+    include_keywords:
+      - "募集资金基本情况"
+      - "募集资金的基本情况"
+      - "募集资金概况"
+      - "前次募集资金使用情况"
+      - "前次募集资金使用情况鉴证报告"
+      - "募集资金存放与使用情况"
+    exclude_keywords: []
+    priority: 3
+    required: false
+
+  # 使用情况章节
+  usage:
+    include_keywords:
+      - "募集资金使用情况"
+      - "募集资金的使用情况"
+      - "募集资金投资项目情况"
+      - "募集资金投资项目使用情况"
+      - "募集资金实际使用情况"
+    exclude_keywords:
+      - "变更"
+      - "延期"
+    priority: 2
+    required: true
+
+  # 变更章节
+  change:
+    include_keywords:
+      - "变更募集资金"
+      - "变更募集资金投资项目"
+      - "募集资金投资项目变更"
+      - "募集资金用途变更"
+      - "募投项目变更"
+    exclude_keywords: []
+    priority: 2
+    required: false
+
+  # 延期章节
+  delay:
+    include_keywords:
+      - "募集资金投资项目延期"
+      - "募投项目延期"
+      - "项目延期"
+      - "募集资金延期"
+      - "延期实施"
+    exclude_keywords: []
+    priority: 2
+    required: false
+
+  # 终止章节
+  termination:
+    include_keywords:
+      - "募集资金投资项目终止"
+      - "募投项目终止"
+      - "项目终止"
+      - "募集资金终止"
+    exclude_keywords: []
+    priority: 2
+    required: false
+
+# 评分配置
+scoring:
+  keyword_match_weight: 1.0
+  title_match_weight: 0.8
+  content_match_weight: 0.5
+  min_score: 0.3
+
+# 去重配置
+deduplication:
+  enabled: true
+  strategy: "keep_parent"  # keep_parent, keep_child, merge
+  similarity_threshold: 0.9

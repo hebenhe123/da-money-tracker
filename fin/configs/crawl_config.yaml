@@ -1,0 +1,28 @@
+# 爬虫配置文件
+
+crawl_config:
+  # 巨潮资讯配置
+  cninfo:
+    base_url: "http://www.cninfo.com.cn"
+    search_url: "http://www.cninfo.com.cn/new/hisAnnouncement/query"
+    headers:
+      User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+
+  # 搜索参数
+  search_params:
+    stock: ""  # 空表示全部股票
+    category: "010401"  # 募集资金相关
+    pageNum: 1
+    pageSize: 100
+
+  # 下载配置
+  download:
+    timeout: 30
+    retry: 3
+    delay: 1  # 请求间隔（秒）
+
+  # 代理配置（可选）
+  proxy:
+    enabled: false
+    http_proxy: ""
+    https_proxy: ""
