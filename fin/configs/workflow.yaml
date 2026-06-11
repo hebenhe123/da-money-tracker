@@ -1,0 +1,93 @@
+# 工作流配置文件
+
+project_name: "fund_usage_extraction"
+description: "上市公司募集资金用途与变更跟踪的结构化抽取"
+
+paths:
+  # 输入路径
+  metadata: "data/metadata/metadata.csv"
+  pdf_dir: "data/pdf"
+  markdown_dir: "data/markdown"
+  parsed_dir: "data/parsed"
+  
+  # 输出路径
+  section_report: "outputs/reports/section_check_report.csv"
+  dataset_audit: "outputs/reports/dataset_audit.csv"
+  results_jsonl: "outputs/results/extract_results.jsonl"
+  validated_csv: "outputs/results/records_validated.csv"
+  final_csv: "outputs/results/final_results.csv"
+  run_log: "outputs/logs/run_log.jsonl"
+  eval_report: "outputs/reports/eval_report_final.md"
+
+steps:
+  collect:
+    enabled: false
+    stock_codes:
+      - "300750"  # 宁德时代
+      - "601012"  # 隆基绿能
+      - "603259"  # 药明康德
+      - "688981"  # 中芯国际
+    date_range:
+      start: "2024-01-01"
+      end: "2024-12-31"
+    announcement_types:
+      - "募集资金使用情况专项报告"
+      - "募投项目变更公告"
+      - "募投项目延期公告"
+
+  audit:
+    enabled: true
+    check_duplicates: true
+    check_keywords: true
+    keywords:
+      - "募集资金"
+      - "募投项目"
+      - "投资项目"
+
+  parse:
+    enabled: true
+    limit: 20
+    parser: "mineru"
+    fallback_parser: "pdfplumber"
+
+  route_sections:
+    enabled: true
+    rules: "configs/section_rules.yaml"
+    min_confidence: 0.5
+
+  extract:
+    enabled: true
+    prompt: "prompts/prompt_final.md"
+    model: "gpt-4o"
+
+  validate:
+    enabled: true
+    schema: "src/llm/schemas.py"
+
+  aggregate:
+    enabled: true
+    deduplicate: true
+
+  report:
+    enabled: true
+
+# 并发配置
+concurrency:
+  max_workers: 4
+  batch_size: 10
+
+# 重试配置
+retry:
+  max_attempts: 2
+  backoff_factor: 2
+
+# 缓存配置
+cache:
+  enabled: true
+  dir: ".cache"
+
+# 日志配置
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "outputs/logs/run.log"
