@@ -175,13 +175,3 @@ python pipeline_run.py --mode full --input data/pdf/ --output outputs/results/
 ```
 
 ---
-
-## 演示视频
-
-[演示视频链接]（待补充）
-
----
-
-## 联系方式
-
-如有问题，请联系项目团队。
