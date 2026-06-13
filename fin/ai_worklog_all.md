@@ -46,24 +46,8 @@
 
 ## 朱怡诺
 
-
-## 使用的工具
-TRAE / ChatGPT / Gemini
-
----
-
-# Project Overview
-
-## 项目题目
-上市公司募集资金用途与变更跟踪的结构化抽取研究
-
 ## 项目目标
 从上市公司募集资金相关公告的PDF文件中，自动识别并抽取与募集资金使用、投资项目变更、项目延期相关的目标章节，为后续LLM结构化信息抽取提供高质量输入数据。
-
-## 成员分工
-| 成员 | 职责 |
-|------|------|
-| Member B | PDF Parsing（MinerU）、Section Checking、Environment & Git |
 
 ---
 
